@@ -1,0 +1,26 @@
+run = "php -S 0.0.0.0:8000 -t './wp'"
+
+entrypoint = "index.php"
+
+hidden = [
+  "wp-admin",
+  "wp-includes",
+  "plugins",
+  "database",
+  "uploads",
+  "upgrade",
+  "db.php",
+  "wp-*.php",
+  "xmlrpc.php",
+]
+
+[nix]
+channel = "stable-22_11"
+
+[deployment]
+run = ["php", "-S", "0.0.0.0:8000", "-t", "./wp"]
+deploymentTarget = "cloudrun"
+
+[[ports]]
+localPort = 8000
+externalPort = 80
